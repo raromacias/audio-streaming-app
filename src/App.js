@@ -6,6 +6,9 @@ import './App.css';
 const socket = io('http://localhost:3000');
 
 function App() {
+
+  //I was thinking of decluttering this main app by creating some seperate files/components
+  //One possibility was making an AudioStreaming.js in an components folder
   const [myId, setMyId] = useState(null);
   const [partnerId, setPartnerId] = useState('');
   const [audioInputs, setAudioInputs] = useState([]);
@@ -18,17 +21,17 @@ function App() {
   const peerRef = useRef();
 
   useEffect(() => {
-    // Get the socket ID for this user
+  
     socket.on('connect', () => {
       setMyId(socket.id);
     });
 
-    // Handle incoming signal data (SDP, ICE candidates)
+    
     socket.on('signal', ({ signal, from }) => {
       peerRef.current.signal(signal);
     });
 
-    // Fetch audio devices
+   
     async function fetchDevices() {
       const devices = await navigator.mediaDevices.enumerateDevices();
       setAudioInputs(devices.filter(device => device.kind === 'audioinput'));
