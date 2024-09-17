@@ -5,6 +5,9 @@ import './App.css';
 
 const socket = io('http://localhost:3000');
 
+//I would also add some styling to this app. 
+//I was also looking into using Next.js as a possibility to create this app as I am learning how to style with Tailwind
+
 function App() {
 
   //I was thinking of decluttering this main app by creating some seperate files/components
